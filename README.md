@@ -114,7 +114,10 @@ quick way to check it really does float above your full screen apps.
 EventKit, which is what lets `test.sh` compile and run them directly.
 
 The build is `swiftc` plus a hand-written bundle layout, then an ad-hoc
-signature so macOS remembers your calendar permission between rebuilds.
+signature, which Apple silicon requires before it will run the binary. Expect
+macOS to ask for calendar access again after every rebuild: an ad-hoc
+signature is tied to the code hash, so each build looks like a new app to the
+privacy database.
 Notarized releases would need the paid Apple Developer Program, so for now the
 install path is a source build.
 

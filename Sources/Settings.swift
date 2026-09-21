@@ -504,10 +504,6 @@ final class SettingsWindow: NSWindowController, NSWindowDelegate {
 
     func show() {
         Prefs.didOnboard = true
-        // A menu bar agent runs as .accessory, and macOS will not let an
-        // accessory app raise a window in front of the active app. Become a
-        // regular app for as long as this window is open, then go back.
-        NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
         window?.makeKeyAndOrderFront(nil)
         window?.orderFrontRegardless()
@@ -519,7 +515,6 @@ final class SettingsWindow: NSWindowController, NSWindowDelegate {
     }
 
     func windowWillClose(_ notification: Notification) {
-        NSApp.setActivationPolicy(.accessory)
         poll?.invalidate()
         poll = nil
     }

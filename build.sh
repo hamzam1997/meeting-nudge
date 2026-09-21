@@ -19,8 +19,10 @@ swiftc -O -swift-version 5 \
   -o "$APP/Contents/MacOS/MeetingNudge" \
   Sources/*.swift
 
-# Ad-hoc signature gives a stable identity, so macOS remembers the calendar
-# permission across rebuilds instead of asking every time.
+# Ad-hoc signature, which arm64 requires in order to run the binary at all.
+# Note that it does NOT preserve the calendar permission: an ad-hoc signature's
+# designated requirement is tied to the code hash, which changes on every
+# build, so macOS asks for calendar access again after each rebuild.
 codesign --force --sign - --identifier com.github.meetingnudge "$APP"
 
 echo "Built $APP"
