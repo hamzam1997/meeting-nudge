@@ -30,8 +30,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         Log.write("launched, lead \(Int(Prefs.leadTime / 60))m, style \(Prefs.alertStyle.rawValue)")
 
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem.button?.image = NSImage(systemSymbolName: "calendar.badge.clock",
-                                           accessibilityDescription: "MeetingNudge")
+        let icon = NSImage(systemSymbolName: "calendar.badge.clock",
+                           accessibilityDescription: "MeetingNudge")
+        // Template mode is what makes the glyph follow the menu bar: white on a
+        // dark bar, black on a light one. Without it the symbol draws in its own
+        // colour and all but disappears against a dark wallpaper.
+        icon?.isTemplate = true
+        statusItem.button?.image = icon
         statusItem.button?.imagePosition = .imageLeading
         rebuildMenu()
 
