@@ -11,6 +11,7 @@ APP="build/MeetingNudge.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp Info.plist "$APP/Contents/Info.plist"
+cp Resources/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 
 swiftc -O -swift-version 5 \
   -target arm64-apple-macos14.0 \

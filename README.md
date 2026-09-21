@@ -109,6 +109,7 @@ quick way to check it really does float above your full screen apps.
 | `Sources/JoinLink.swift` | Join-link and provider matching |
 | `Sources/Log.swift` | The log file |
 | `Sources/Prefs.swift` | Preferences |
+| `Resources/make-icon.py` | Draws the app icon, so it is editable rather than opaque |
 
 `Schedule`, `JoinLink` and `Meeting` are pure Foundation, with no AppKit and no
 EventKit, which is what lets `test.sh` compile and run them directly.
