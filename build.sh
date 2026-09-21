@@ -24,6 +24,6 @@ swiftc -O -swift-version 5 \
 # Note that it does NOT preserve the calendar permission: an ad-hoc signature's
 # designated requirement is tied to the code hash, which changes on every
 # build, so macOS asks for calendar access again after each rebuild.
-codesign --force --sign - --identifier com.github.meetingnudge "$APP"
+codesign --force --sign - --identifier io.github.hamzam1997.meetingnudge "$APP"
 
 echo "Built $APP"

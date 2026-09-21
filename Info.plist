@@ -5,7 +5,7 @@
   <key>CFBundleName</key>            <string>MeetingNudge</string>
   <key>CFBundleDisplayName</key>     <string>MeetingNudge</string>
   <key>CFBundleExecutable</key>      <string>MeetingNudge</string>
-  <key>CFBundleIdentifier</key>      <string>com.github.meetingnudge</string>
+  <key>CFBundleIdentifier</key>      <string>io.github.hamzam1997.meetingnudge</string>
   <key>CFBundlePackageType</key>     <string>APPL</string>
   <key>CFBundleIconFile</key>        <string>AppIcon</string>
   <key>CFBundleIconName</key>        <string>AppIcon</string>
