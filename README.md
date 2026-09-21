@@ -88,6 +88,46 @@ until you come back.
   Slack huddles, and falls back to any link it finds.
 - Each occurrence of a repeating meeting alerts once.
 
+## Troubleshooting
+
+### The menu bar icon is missing
+
+Check **System Settings › Control Center › Menu Bar** first. Every third-party
+menu bar item gets an entry there, and an app can end up with more than one:
+macOS names an entry after the process that was responsible for launching the
+app the first time it registered, so launching from a terminal owned by some
+other program produces an entry under *that* program's name.
+
+When there is more than one, macOS gates the icon on all of them. Switch any
+one off and the icon disappears, with no other symptom. From inside the app it
+still looks fine: the item reports itself created and visible, and its window
+is alive, but it is never given a slot.
+
+Two ways out. Switch on every entry that could plausibly be this app, or
+change `CFBundleIdentifier` in `Info.plist` and rebuild, which retires the old
+entries and creates one clean one. The **Reset Control Center…** button on that
+settings pane also works, but it resets the menu bar for all your other apps
+too.
+
+To avoid the problem in the first place, launch from Spotlight, Finder or
+Launch at login rather than from a terminal.
+
+### An alert did not arrive
+
+There is a capped log at `~/Library/Logs/MeetingNudge.log`, reachable from the
+**Open log** button in settings. It records what the app is watching, every
+alert it raises, and every calendar it could not read.
+
+The usual cause is sync latency rather than the app. A meeting added seconds
+before it starts may not have reached the local calendar store yet. The **Up
+next** panel in settings shows exactly what the app can see right now,
+including whether it found a join link for each meeting.
+
+### Calendar access keeps being asked for
+
+Expected after every rebuild. An ad-hoc signature is tied to the code hash, so
+each build looks like a new app to the privacy database.
+
 ## Development
 
 ```bash
