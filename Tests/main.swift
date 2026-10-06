@@ -42,6 +42,8 @@ checkEqual(bestJoinURL(url: nil, location: "https://meet.google.com/abc-defg-hij
 checkEqual(bestJoinURL(url: nil, location: nil,
                        notes: "<a href=\"https://teams.microsoft.com/l/meetup-join/19%3ameeting_X\">Join</a>")?.absoluteString,
            "https://teams.microsoft.com/l/meetup-join/19%3ameeting_X", "teams link inside html notes")
+checkEqual(bestJoinURL(url: nil, location: "https://meeting.zoho.com/join?key=123", notes: nil)?.absoluteString,
+           "https://meeting.zoho.com/join?key=123", "zoho meeting in the location field")
 checkEqual(bestJoinURL(url: nil, location: nil, notes: "Dial in at https://meet.jit.si/standup, see you there.")?.absoluteString,
            "https://meet.jit.si/standup", "trailing prose punctuation is stripped")
 checkEqual(bestJoinURL(url: "https://example.com/room/42", location: "Room 3", notes: nil)?.absoluteString,
@@ -51,6 +53,7 @@ check(bestJoinURL(url: nil, location: "Meeting Room 4B", notes: "Bring the deck"
 
 checkEqual(providerName(for: URL(string: "https://acme.zoom.us/j/1")!), "Zoom", "zoom subdomain named")
 checkEqual(providerName(for: URL(string: "https://meet.google.com/a-b-c")!), "Google Meet", "meet named")
+checkEqual(providerName(for: URL(string: "https://meeting.zoho.com/join?key=123")!), "Zoho Meeting", "zoho meeting named")
 check(providerName(for: URL(string: "https://notzoom.us.evil.com/j/1")!) == nil, "a lookalike host is not zoom")
 check(providerName(for: URL(string: "https://wiki.corp/x")!) == nil, "unknown host has no provider name")
 
