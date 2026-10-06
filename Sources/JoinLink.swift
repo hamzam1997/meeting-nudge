@@ -15,6 +15,7 @@ private let providerPatterns = [
     #"https://[\w.-]*chime\.aws/[^\s<>"')]+"#,
     #"https://app\.slack\.com/huddle/[^\s<>"')]+"#,
     #"https://[\w.-]*around\.co/[^\s<>"')]+"#,
+    #"https://meeting\.zoho\.com/[^\s<>"')]+"#,
 ]
 
 private func firstMatch(_ pattern: String, in text: String) -> String? {
@@ -57,6 +58,7 @@ func providerName(for url: URL) -> String? {
         ("bluejeans.com", "BlueJeans"),
         ("chime.aws", "Chime"),
         ("slack.com", "Slack"),
+        ("meeting.zoho.com", "Zoho Meeting"),
     ]
     return names.first { host == $0.0 || host.hasSuffix("." + $0.0) }?.1
 }
